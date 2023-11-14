@@ -24,5 +24,5 @@ Broadcast::channel('chat.{id}', function ($user, $id) {
         ],
 
     ])->first();
-    return $participant == null;
+    return $participant !== null;
 });
