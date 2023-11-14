@@ -36,7 +36,7 @@ class User extends Authenticatable
 
     public function routeNotificationForOneSignal() : array
     {
-        return ['tagas' => ['key' => 'userId', 'relation' => '=', 'value' => (string)($this->id)]];
+        return ['tags' => ['key' => 'userId', 'relation' => '=', 'value' => (string)($this->id)]];
     }
 
     public function sendNewMessageNotification(array $data) : void

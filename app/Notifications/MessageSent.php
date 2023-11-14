@@ -28,12 +28,12 @@ class MessageSent extends Notification
      *
      * @return array<int, string>
      */
-    public function via()
+    public function via($notifiable)
     {
         return [OneSignalChannel::class];
     }
 
-    public function toOneSignal()
+    public function toOneSignal($notifiable)
     {
         $messageData = $this->data['messageData'];
 
