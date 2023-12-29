@@ -26,7 +26,8 @@ class StoreMessageRequest extends FormRequest
 
         return [
             'chat_id' => "required|exists:{$chatModel},id",
-            'message' => 'required|string',
+            'message' => 'string',
+            'locations' => 'in:0,1',
         ];
     }
 }

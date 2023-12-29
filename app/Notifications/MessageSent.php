@@ -40,6 +40,7 @@ class MessageSent extends Notification
         return OneSignalMessage::create()
                 ->setSubject($messageData['senderName'] . ' mengirim pesan.')
                 ->setBody($messageData['message'])
+                ->setSound(storage_path('/public/sound/waterdrop.wav'))
                 ->setData('data', $messageData);
     }
 }
