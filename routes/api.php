@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BakamlaCallController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\ChatMessageController;
 use App\Http\Controllers\UserController;
@@ -40,3 +41,6 @@ Route::middleware('auth:sanctum')->group(function() {
     Route::apiResource('chat_message', ChatMessageController::class)->only(['index', 'store']);
     Route::apiResource('user', UserController::class)->only(['index']);
 });
+
+Route::post('/make-calls', [BakamlaCallController::class, 'make-call']);
+Route::post('/twilio-voice', [BakamlaCallController::class, 'handleTwilioVoiceCallback']);
