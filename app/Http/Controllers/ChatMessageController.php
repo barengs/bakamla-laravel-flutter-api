@@ -156,14 +156,11 @@ class ChatMessageController extends Controller
             $otherUserId = $chat->participants[0]->user_id;
 
             $otherUser = User::where('id', $otherUserId)->first();
-            // $foto = 'Foto';
             $msg = $chatMessage->message != $chatMessage->images ? $chatMessage->message : 'Foto';
 
-            // $msg = $chatMessage->message != '' && $chatMessage->message == $chatMessage->images ? $chatMessage->message : 'Foto';
             $otherUser->sendNewMessageNotification([
                 'messageData' => [
                     'senderName' => $user->username,
-                    // 'message' => $chatMessage->message,
                     'message' => $msg,
                     'chatId' => $chatMessage->chat_id,
                 ]
