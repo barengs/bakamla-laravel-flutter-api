@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\ChatMessageController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Broadcast;
@@ -39,4 +40,7 @@ Route::middleware('auth:sanctum')->group(function() {
     Route::apiResource('chat', ChatController::class)->only(['index', 'store', 'show']);
     Route::apiResource('chat_message', ChatMessageController::class)->only(['index', 'store']);
     Route::apiResource('user', UserController::class)->only(['index']);
+    Route::get('profile', [ProfileController::class, 'index']);
+    Route::patch('profile-update', [ProfileController::class, 'updateProfile']);
+    Route::patch('profile-avatar', [ProfileController::class, 'updateAvatar']);
 });

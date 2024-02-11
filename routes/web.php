@@ -27,6 +27,13 @@ Route::get('storage/image/{filename}', function ($filename)
     // hosting
     // return Image::make('/home/bare3321/lq.bakamla/public/storage/image/' . $filename)->response();
 });
+Route::get('storage/avatar/{filename}', function ($filename)
+{
+    // local
+    return Image::make(storage_path('public/avatar/' . $filename))->response();
+    // hosting
+    // return Image::make('/home/bare3321/lq.bakamla/public/storage/avatar/' . $filename)->response();
+});
 Route::get('storage/video/{filename}', function ($filename)
 {
     //  $path = storage_path('public/video/' . $filename);
