@@ -40,7 +40,15 @@ Route::middleware('auth:sanctum')->group(function() {
     Route::apiResource('chat', ChatController::class)->only(['index', 'store', 'show']);
     Route::apiResource('chat_message', ChatMessageController::class)->only(['index', 'store']);
     Route::apiResource('user', UserController::class)->only(['index']);
-    Route::get('profile', [ProfileController::class, 'index']);
-    Route::patch('profile-update', [ProfileController::class, 'updateProfile']);
-    Route::patch('profile-avatar', [ProfileController::class, 'updateAvatar']);
+    // Route::get('profile', [ProfileController::class, 'index']);
+    Route::controller(ProfileController::class)->group(function(){
+        Route::post('profile-bio', 'updateBio');
+        Route::post('profile-username', 'updateUsername');
+        Route::post('profile-avatar', 'updateAvatar');
+        Route::post('profile-phones', 'updateNumber');
+    });
+    // Route::post('profile-username', [ProfileController::class, 'updateUsername']);
+    // Route::post('profile-bio', [ProfileController::class, 'updateBio']);
+    // Route::post('profile-phones', [ProfileController::class, 'updateNumber']);
+    // Route::post('profile-avatar', [ProfileController::class, 'updateAvatar']);
 });

@@ -16,8 +16,9 @@ return new class extends Migration
             $table->string('username');
             $table->string('avatar')->nullable();
             $table->string('email')->unique();
-            $table->string('kta')->unique()->nullable();
-            $table->string('phones')->unique()->nullable();
+            $table->string('bio')->default('Sibuk');
+            $table->string('kta')->unique();
+            $table->string('phones')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

@@ -7,6 +7,7 @@ use App\Http\Requests\GetMessageRequest;
 use App\Http\Requests\StoreMessageRequest;
 use App\Models\Chat;
 use App\Models\ChatMessage;
+use App\Models\ChatParticipant;
 use App\Models\User;
 use Carbon\Carbon;
 use DateTime;
@@ -28,6 +29,24 @@ class ChatMessageController extends Controller
      */
     public function index(GetMessageRequest $request): JsonResponse
     {
+        $data = $request->validated();
+
+        $chatId = $data['chat_id'];
+        $currentPage = $data['page'];
+        $pageSize = $data['page_size'] ?? 15;
+
+        $messages = ChatMessage::where('chat_id', $chatId)
+            ->with('user')
+            ->latest('created_at')
+            ->simplePaginate($pageSize, ['*'], 'page', $currentPage);
+        
+        return $this->success($messages->getCollection());
+    }
+    public function indexSearch(GetMessageRequest $request, Request $request2): JsonResponse
+    {
+        $idAuth = $request2->authUser;
+        $idOther = $request2->otherUer;
+        $search = ChatParticipant::where('');
         $data = $request->validated();
 
         $chatId = $data['chat_id'];
